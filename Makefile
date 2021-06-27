@@ -5,7 +5,9 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=luci-app-fileassistant
 LUCI_PKGARCH:=all
+PKG_VERSION:=1.1
+PKG_RELEASE:=2
 
-include ../../luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
