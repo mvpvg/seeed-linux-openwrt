@@ -1,6 +1,6 @@
-# luci-app-filebrowser -- web文件管理
+# luci-app-fileassistant -- web文件管理
 
-File browser app for OpenWrt Luci
+File Assistant app for OpenWrt Luci
 
 ### main features
 
