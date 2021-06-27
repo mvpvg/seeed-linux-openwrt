@@ -8,6 +8,6 @@ if [ -z "$1" ]; then
 else
   ver=$1
 fi
-sed -i "s/@ver/$ver/g" /usr/lib/lua/luci/view/filebrowser.htm
+sed -i "s/@ver/$ver/g" /usr/lib/lua/luci/view/fileassistant.htm
 
 rm -rf /tmp/luci*
