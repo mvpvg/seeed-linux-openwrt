@@ -22,7 +22,7 @@ msgstr "输入新名字:"
 
 #: applications/luci-app-fileassistant/luasrc/controller/fileassistant.lua:5
 #: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:4
-msgid "File Browser"
+msgid "File Assistant"
 msgstr "文件管理"
 
 #: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:8
