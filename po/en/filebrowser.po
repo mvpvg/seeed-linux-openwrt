@@ -20,10 +20,10 @@ msgstr "Delete"
 msgid "Enter New Name:"
 msgstr "Enter New Name:"
 
-#: applications/luci-app-filebrowser/luasrc/controller/filebrowser.lua:5
-#: applications/luci-app-filebrowser/luasrc/view/filebrowser.htm:4
+#: applications/luci-app-filebrowser/luasrc/controller/fileassistant.lua:5
+#: applications/luci-app-filebrowser/luasrc/view/fileassistant.htm:4
 msgid "File Browser"
-msgstr "File Browser"
+msgstr "File Assistant"
 
 #: applications/luci-app-filebrowser/luasrc/view/filebrowser.htm:8
 msgid "File List:"
