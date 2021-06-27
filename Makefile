@@ -3,7 +3,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=luci-app-fileassistant
+LUCI_TITLE:=LuCI support for Fileassistant
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.1
 PKG_RELEASE:=2
