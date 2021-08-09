@@ -1,0 +1,39 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: applications/luci-app-fileassistant/htdocs/luci-static/resources/fb/fb.js:147
+msgid "Delete"
+msgstr ""
+
+#: applications/luci-app-fileassistant/htdocs/luci-static/resources/fb/fb.js:35
+msgid "Enter New Name:"
+msgstr ""
+
+#: applications/luci-app-fileassistant/luasrc/controller/fileassistant.lua:5
+#: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:4
+msgid "File Assistant"
+msgstr ""
+
+#: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:8
+msgid "File List:"
+msgstr ""
+
+#: applications/luci-app-fileassistant/htdocs/luci-static/resources/fb/fb.js:146
+msgid "Rename"
+msgstr ""
+
+#: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:13
+msgid "Start"
+msgstr ""
+
+#: applications/luci-app-fileassistant/luasrc/view/fileassistant.htm:9
+msgid "Upload"
+msgstr ""
+
+#: applications/luci-app-fileassistant/htdocs/luci-static/resources/fb/fb.js:212
+msgid "Upload failed"
+msgstr ""
+
+#: applications/luci-app-fileassistant/htdocs/luci-static/resources/fb/fb.js:20
+msgid "Want to delete:"
+msgstr ""
