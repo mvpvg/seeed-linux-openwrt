@@ -42,7 +42,7 @@ def work_path(path):
 
 def main():
 
-    global tmp_path
+    global tmp_path, packages_path, json_path
 
     tmp_path = tempfile.mkdtemp()
   
@@ -110,7 +110,8 @@ def main():
                 os.system("git merge {}/{} --allow-unrelated-histories --commit -m \"merge: {}'s {}\"".format(package_origin, branch, author, name))
             
                 os.chdir("{}".format(work_path(format(repo_branch))))
-                os.mkdir(author)
+                if not os.path.exists(author):
+                    os.mkdir(author)
                 for item in package['items']:
                     if os.path.exists("{}".format(work_path("{}/{}".format(repo_branch, item)))):
                         print("git mv {} {}/".format(item, author))
@@ -118,22 +119,39 @@ def main():
                             os.system("git mv {} {}/".format(item, author))
                         except Exception as e:
                             print(e)
-
+    
+                    
+                    
                 os.system("git add --all")
                 os.system("git commit -m \"{}'s {}: tidy up\"".format(author, name))
+            
 
         if os.path.exists("{}".format(packages_path)):
             shutil.rmtree("{}".format(packages_path), onerror=readonly_handler)
 
         os.system("git clone {} {}".format(work_path(repo_branch), packages_path))
         os.chdir(packages_path)
+        
+        for home, dirs, files in os.walk(packages_path):
+                for file in files:
+                    if file == 'Makefile':
+                        with open(os.path.join(home,file), 'r+') as f:
+                            read_data = f.read()
+                            f.seek(0)
+                            f.truncate()
+                            write_data = read_data.replace("../../luci.mk", "$(TOPDIR)/feeds/luci/luci.mk")
+                            write_data = write_data.replace("../../lang", "$(TOPDIR)/feeds/packages/lang")
+                            f.write(write_data)
+        
+        os.system("git add --all")
+        os.system("git commit -m \"tidy up\"")                        
+        
         os.system("git remote set-url origin {}".format(repo_url))
 
         shutil.rmtree("{}".format(tmp_path), onerror=readonly_handler)
 
 
 if __name__ == '__main__':
-
     if(len(sys.argv) <= 1):
         packages_path = "/tmp/packages"
         json_path = "./scripts/packages.json"

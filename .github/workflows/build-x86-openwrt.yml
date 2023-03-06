@@ -5,7 +5,7 @@ on:
     types: [openwrt, x86]
   workflow_dispatch:
   schedule:
-    - cron: 0 1 * * 1,2
+    - cron: 0 1 * * 1-5
 #  watch:
 #    types: started
 
@@ -27,6 +27,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
+
+      - name: Openwrt Tools Cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-toolchains
+        with:
+          path: |
+            staging_dir
+            build_dir/host
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('configs/x86_defconfig') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - name: Initialization Environment
         env:

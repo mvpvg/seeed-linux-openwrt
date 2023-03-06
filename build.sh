@@ -10,14 +10,23 @@ while [ ! -z "$1" ]; do
 		./scripts/update_packages.py
 		;;
 	--source-op)
-		source_update
+		#source_update
+		git clone https://github.com/Seeed-Studio/seeed-linux-openwrt -b openwrt-21.02 --depth=1 --single-branch openwrt
 		;;
 	--feeds)
 	    WORKSPACE_ROOT=`pwd`
 		cd ${OPENWRTROOT}
 		./scripts/feeds update -a
 		cd ${OPENWRTROOT}/feeds/packages
-		git am ${WORKSPACE_ROOT}/patches/fd03fc267e077bf948ada8af2d9fcb3616551247.patch
+		git checkout 56c120b067979d62f3d8e007748eaaaf01e55a0e
+		cd ${OPENWRTROOT}/feeds/luci
+		git checkout d548d858c8cf62d36ab87dcf5d317fe05ede19cf
+		cd ${OPENWRTROOT}/feeds/routing
+		git checkout 2c21c1627b38e14826b8d5b67a58544136dcd240
+		cd ${OPENWRTROOT}/feeds/telephony
+		git checkout 920fbc5c0a2e4badf51bceff42e9a1e3eb693462
+		cd ${OPENWRTROOT}/feeds/node
+		git checkout ab5ebe0faaa8635d4bd5971ede12bedb203910a5
 		cd ${OPENWRTROOT}
 		./scripts/feeds install -a
 		./scripts/feeds uninstall luci-app-dockerman
@@ -27,6 +36,19 @@ while [ ! -z "$1" ]; do
 		;;
 	--deconfig)
 		cd ${OPENWRTROOT}
+		if [ ! -d '../staging_dir' ]; then
+			echo "staging_dir cache not ready."
+			mkdir ../staging_dir
+		fi
+		ln -s ../staging_dir 
+
+		if [ ! -d '../build_dir/host' ]; then
+			echo "build_dir cache not ready."
+			mkdir ../build_dir/host	-p
+			mkdir ./build_dir
+		fi
+		ln -s ../../build_dir/host build_dir/host
+
 		if [ "${OPENWRT_CONFIG_FILE}" = "configs/x86_defconfig" ]; then
 			cp -rf ../files/x86 files
 
